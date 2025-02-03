@@ -10,13 +10,16 @@ packages = [
 ]
 
 [tool.poetry.dependencies]
-python = "^3.12"
+python = ">=3.9"
 structlog = "^25.1.0"
 pymupdf4llm = "^0.0.17"
+boto3 = "^1.36.11"
+rich = "^13.9.4"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^7.0"
 mypy = "1.14.1"
+pytest-cov = "^6.0.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

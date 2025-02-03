@@ -14,8 +14,7 @@ from dataclasses import dataclass
 from typing import List
 from pathlib import Path
 
-# Import the structlog logger from your configuration module
-from logger_config import logger
+from .logger_config import logger
 
 OUTPUT_M4B_DEFAULT = "output.m4b"
 CONCAT_LIST_FILENAME = "concat_list.txt"

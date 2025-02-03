@@ -14,7 +14,7 @@ import subprocess
 from pathlib import Path
 from typing import List
 import boto3
-from logger_config import logger
+from .logger_config import logger
 
 OUTPUT_FORMAT: str = "ogg_vorbis"  # Change to "mp3" if preferred.
 AUDIO_EXTENSION: str = "ogg" if OUTPUT_FORMAT == "ogg_vorbis" else "mp3"
@@ -59,8 +59,8 @@ def process_md_file(md_file: Path, polly_client: boto3.client) -> None:
     try:
         raw_text = md_file.read_text(encoding="utf-8")
     except Exception as err:
-        logger.error("Error reading file", md_file=str(md_file), error=str(err))
-        return
+        logger.error("Error reading file", md_file=str(md_file), exc_info=err)
+        raise
 
     if not raw_text.strip():
         logger.info("Empty markdown file; skipping", md_file=str(md_file))
@@ -89,11 +89,12 @@ def process_md_file(md_file: Path, polly_client: boto3.client) -> None:
             )
         except Exception as err:
             logger.error("Error synthesizing speech", md_file=str(md_file),
-                         chunk=idx, error=str(err))
-            continue
+                         chunk=idx, exc_info=err)
+            raise
 
         if "AudioStream" not in response:
             logger.error("No AudioStream in Polly response", md_file=str(md_file), chunk=idx)
+            raise Exception("No audio!")
             continue
 
         audio_data = response["AudioStream"].read()
@@ -104,8 +105,8 @@ def process_md_file(md_file: Path, polly_client: boto3.client) -> None:
         try:
             chunk_file.write_bytes(audio_data)
         except Exception as err:
-            logger.error("Error writing audio chunk", file=str(chunk_file), error=str(err))
-            continue
+            logger.error("Error writing audio chunk", file=str(chunk_file), exc_info=err)
+            raise
         temp_files.append(chunk_file)
 
     if not temp_files:
@@ -123,7 +124,8 @@ def process_md_file(md_file: Path, polly_client: boto3.client) -> None:
             logger.info("Single chunk renamed to final output", output=str(output_audio))
         except Exception as err:
             logger.error("Error renaming audio file", source=str(temp_files[0]),
-                         target=str(output_audio), error=str(err))
+                         target=str(output_audio), exc_info=err)
+            raise
     else:
         filelist = folder / "chunks.txt"
         try:
@@ -141,7 +143,8 @@ def process_md_file(md_file: Path, polly_client: boto3.client) -> None:
             else:
                 logger.info("Combined audio saved", output=str(output_audio))
         except Exception as err:
-            logger.error("Error during audio combination", md_file=str(md_file), error=str(err))
+            logger.error("Error during audio combination", md_file=str(md_file), exc_info=err)
+            raise 
         finally:
             if filelist.exists():
                 filelist.unlink()

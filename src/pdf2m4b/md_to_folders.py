@@ -13,7 +13,7 @@ import sys
 from pathlib import Path
 from dataclasses import dataclass, field
 from typing import List
-from logger_config import logger
+from .logger_config import logger
 
 @dataclass
 class Node:

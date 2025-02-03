@@ -11,11 +11,11 @@ End-to-end audiobook generation:
 
 import argparse
 from pathlib import Path
-from logger_config import logger
-from pdf_to_md import pdf_to_md
-from md_to_folders import convert_md
-from tts_polly import run_tts
-from make_m4b import create_m4b
+from .logger_config import logger
+from .pdf_to_md import pdf_to_md
+from .md_to_folders import convert_md
+from .tts_polly import run_tts
+from .make_m4b import create_m4b
 
 def main():
     parser = argparse.ArgumentParser(description="Create an audiobook from a PDF.")
@@ -29,7 +29,7 @@ def main():
     try:
         out_dir.mkdir(exist_ok=True, parents=True)
     except Exception as e:
-        logger.error("Error creating output directory", directory=str(out_dir), error=str(e))
+        logger.error("Error creating output directory", directory=str(out_dir), exc_info=e)
         raise
 
     # Step 1: Convert PDF to Markdown.
@@ -42,7 +42,7 @@ def main():
     try:
         chapters_dir.mkdir(exist_ok=True, parents=True)
     except Exception as e:
-        logger.error("Error creating chapters directory", directory=str(chapters_dir), error=str(e))
+        logger.error("Error creating chapters directory", directory=str(chapters_dir), exc_info=e)
         raise
     logger.info("Converting Markdown to folder structure", markdown=str(md_file), chapters=str(chapters_dir))
     convert_md(md_file, chapters_dir)

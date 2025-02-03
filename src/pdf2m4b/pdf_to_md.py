@@ -8,7 +8,7 @@ Converts a PDF to Markdown using pymupdf4llm.
 import sys
 from pathlib import Path
 import pymupdf4llm
-from logger_config import logger
+from .logger_config import logger
 
 def pdf_to_md(pdf_path: Path, output_md: Path) -> None:
     try:

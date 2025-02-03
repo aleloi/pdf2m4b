@@ -40,6 +40,6 @@ Processing ../extracted.pdf...
 2025-02-03 07:29:26 [info     ] Audiobook creation complete    func_name=main module=main
 ```
 
-## TODO
-- usage instructions
-- tests
+## TODOs
+- example PDFs
+- run more pdfs through it
