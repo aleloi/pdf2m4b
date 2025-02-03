@@ -13,6 +13,8 @@
 
 ## Usage example
 ```
+export AWS_ACCESS_KEY_ID=AKI...
+export AWS_SECRET_ACCESS_KEY=7SR...
 python main.py --pdf ../extracted.pdf
                       python main.py --pdf ../extracted.pdf
 2025-02-03 07:27:58 [info     ] Converting PDF to Markdown     func_name=main markdown=output/output.md module=main pdf=../extracted.pdf
