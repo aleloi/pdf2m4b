@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pdf2m4b"
-version = "0.1.0"
+version = "0.1.1"
 description = "A tool for converting PDFs to M4B audiobooks using AWS polly."
 authors = ["Alex Loiko <alexandreloiko@gmail.com>"]
 license = "MIT"
