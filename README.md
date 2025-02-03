@@ -47,7 +47,3 @@ As of February 2025, it's around $10 per book. The project uses the **generative
 See [here](example_outputs/bishop_mcmc.m4b) for an output audiobook, which is the end result.
 [Here](example_outputs/bishop_mcmc.pdf) is the corresponding input. [Here](example_outputs/bishop_mcmc/output.md) is an intermediate markdown file, and [here](example_outputs/bishop_mcmc/) is a file tree with hierarchical text and audio snippets. It's a rather *adversarial* example; there are lots of formulas that the initial parsing does wrong, and which are then filtered out before passing the text to the model. It performs quite well if you use it on an ordinary plain text without formulas.
 
-
-## TODOs
-- example PDFs
-- run more pdfs through it

@@ -24,7 +24,7 @@ Usage:
 ```
 
 
-For detailed documentation, visit: https://github.com/your-repo/pdf2m4b
+For detailed documentation, visit: https://github.com/aleloi/pdf2m4b
 """
 
-__version__ = "0.1.0"
+__version__ = "0.1.2"
