@@ -5,6 +5,7 @@ description = "A tool for converting PDFs to M4B audiobooks using AWS polly."
 authors = ["Alex Loiko <alexandreloiko@gmail.com>"]
 license = "MIT"
 readme = "README.md"
+homepage = "https://github.com/aleloi/pdf2m4b"
 packages = [
     { include = "pdf2m4b", from = "src" }
 ]

@@ -12,11 +12,11 @@
 - **Easy Installation:** Available on PyPI and installable via pip.
 
 ## Usage example
-```
-export AWS_ACCESS_KEY_ID=AKI...
-export AWS_SECRET_ACCESS_KEY=7SR...
-python main.py --pdf ../extracted.pdf
-                      python main.py --pdf ../extracted.pdf
+```bash
+$ export AWS_ACCESS_KEY_ID=AKI...
+$ export AWS_SECRET_ACCESS_KEY=7SR...
+$ pip install pdf2m4b
+$ python -m pdf2m4b.main --pdf ../extracted.pdf
 2025-02-03 07:27:58 [info     ] Converting PDF to Markdown     func_name=main markdown=output/output.md module=main pdf=../extracted.pdf
 Processing ../extracted.pdf...
 [========================================]
@@ -39,6 +39,14 @@ Processing ../extracted.pdf...
 2025-02-03 07:29:26 [info     ] Successfully created M4B file  func_name=create_m4b module=make_m4b output_file=output.m4b
 2025-02-03 07:29:26 [info     ] Audiobook creation complete    func_name=main module=main
 ```
+
+## AWS costs
+As of February 2025, it's around $10 per book. The project uses the **generative** setting of AWS Polly; check an example below.
+
+## Example output
+See [here](example_outputs/bishop_mcmc.m4b) for an output audiobook, which is the end result.
+[Here](example_outputs/bishop_mcmc.pdf) is the corresponding input. [Here](example_outputs/bishop_mcmc/output.md) is an intermediate markdown file, and [here](example_outputs/bishop_mcmc/) is a file tree with hierarchical text and audio snippets. It's a rather *adversarial* example; there are lots of formulas that the initial parsing does wrong, and which are then filtered out before passing the text to the model. It performs quite well if you use it on an ordinary plain text without formulas.
+
 
 ## TODOs
 - example PDFs
